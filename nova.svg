@@ -1,86 +1,126 @@
 <svg width="600" height="800" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background - dark cosmic space -->
-  <rect width="600" height="800" fill="#0a0a1a"/>
-  
-  <!-- Stars -->
-  <circle cx="50" cy="60" r="1.5" fill="white" opacity="0.8"/>
-  <circle cx="150" cy="120" r="1" fill="white" opacity="0.6"/>
-  <circle cx="520" cy="80" r="2" fill="white" opacity="0.9"/>
-  <circle cx="400" cy="40" r="1" fill="white" opacity="0.5"/>
-  <circle cx="80" cy="300" r="1.5" fill="white" opacity="0.7"/>
-  <circle cx="550" cy="250" r="1" fill="white" opacity="0.6"/>
-  <circle cx="30" cy="500" r="1.5" fill="white" opacity="0.8"/>
-  <circle cx="570" cy="600" r="1" fill="white" opacity="0.5"/>
-  <circle cx="100" cy="700" r="2" fill="white" opacity="0.7"/>
-  <circle cx="500" cy="720" r="1.5" fill="white" opacity="0.9"/>
-  
-  <!-- Nebula glow -->
-  <ellipse cx="300" cy="400" rx="250" ry="350" fill="url(#nebula)" opacity="0.3"/>
-  
   <defs>
-    <radialGradient id="nebula" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff0044" stop-opacity="0.6"/>
-      <stop offset="50%" stop-color="#4400ff" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#0a0a1a" stop-opacity="0"/>
-    </radialGradient>
-    
-    <linearGradient id="novaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff0000"/>
-      <stop offset="50%" stop-color="#ff6600"/>
-      <stop offset="100%" stop-color="#ffcc00"/>
+    <!-- Dark tech gradient background -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="50%" stop-color="#0d0d2b"/>
+      <stop offset="100%" stop-color="#050510"/>
     </linearGradient>
+    
+    <!-- Cyber gradient for NOVA text -->
+    <linearGradient id="novaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="50%" stop-color="#7b2ffc"/>
+      <stop offset="100%" stop-color="#ff006e"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Hexagon pattern -->
+    <pattern id="hexGrid" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="scale(0.6)">
+      <path d="M 20 0 L 40 11.5 L 40 34.5 L 20 46 L 0 34.5 L 0 11.5 Z" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.08"/>
+      <path d="M 20 0 L 40 11.5 L 40 34.5 L 20 46 L 0 34.5 L 0 11.5 Z" fill="none" stroke="#7b2ffc" stroke-width="0.3" opacity="0.05" transform="translate(20, 20)"/>
+    </pattern>
   </defs>
   
-  <!-- Movie title border frame -->
-  <rect x="20" y="20" width="560" height="760" rx="10" fill="none" stroke="#ffcc00" stroke-width="3" opacity="0.5"/>
-  <rect x="30" y="30" width="540" height="740" rx="8" fill="none" stroke="#ff4400" stroke-width="1" opacity="0.3"/>
+  <!-- Background -->
+  <rect width="600" height="800" fill="url(#bgGrad)"/>
+  
+  <!-- Hex grid overlay -->
+  <rect width="600" height="800" fill="url(#hexGrid)"/>
+  
+  <!-- Circuit lines -->
+  <path d="M 0 200 L 100 200 L 150 150 L 250 150 L 300 180" stroke="#00d4ff" stroke-width="0.5" fill="none" opacity="0.15"/>
+  <path d="M 600 300 L 500 300 L 450 350 L 350 350 L 300 320" stroke="#7b2ffc" stroke-width="0.5" fill="none" opacity="0.15"/>
+  <path d="M 0 500 L 80 500 L 120 550 L 200 550" stroke="#ff006e" stroke-width="0.5" fill="none" opacity="0.1"/>
+  <path d="M 600 600 L 520 600 L 480 550 L 400 550" stroke="#00d4ff" stroke-width="0.5" fill="none" opacity="0.1"/>
+  
+  <!-- Animated pulse circles (static representation) -->
+  <circle cx="300" cy="380" r="120" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.15"/>
+  <circle cx="300" cy="380" r="90" fill="none" stroke="#7b2ffc" stroke-width="1.5" opacity="0.2"/>
+  <circle cx="300" cy="380" r="60" fill="none" stroke="#ff006e" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Central tech orb -->
+  <circle cx="300" cy="380" r="35" fill="url(#novaGrad)" filter="url(#glowStrong)" opacity="0.9"/>
+  <circle cx="300" cy="380" r="25" fill="#0a0a1a" opacity="0.8"/>
+  <circle cx="300" cy="380" r="15" fill="url(#novaGrad)" opacity="0.7"/>
+  <circle cx="300" cy="380" r="5" fill="#ffffff" opacity="0.9" filter="url(#glow)"/>
+  
+  <!-- Orbital rings -->
+  <ellipse cx="300" cy="380" rx="50" ry="15" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.4" transform="rotate(-30 300 380)"/>
+  <ellipse cx="300" cy="380" rx="55" ry="12" fill="none" stroke="#7b2ffc" stroke-width="1" opacity="0.3" transform="rotate(45 300 380)"/>
+  
+  <!-- Data streams -->
+  <path d="M 200 330 L 250 360" stroke="#00d4ff" stroke-width="1" opacity="0.4" filter="url(#glow)"/>
+  <path d="M 400 330 L 350 360" stroke="#ff006e" stroke-width="1" opacity="0.4" filter="url(#glow)"/>
+  <path d="M 230 420 L 280 400" stroke="#7b2ffc" stroke-width="1" opacity="0.4" filter="url(#glow)"/>
+  <path d="M 370 420 L 320 400" stroke="#00d4ff" stroke-width="1" opacity="0.4" filter="url(#glow)"/>
   
   <!-- NOVA main title -->
-  <text x="300" y="200" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="120" font-weight="bold" fill="url(#novaGrad)" stroke="#ff0000" stroke-width="3" letter-spacing="15">
+  <text x="300" y="220" text-anchor="middle" font-family="'Segoe UI', 'Arial Black', sans-serif" font-size="110" font-weight="900" fill="url(#novaGrad)" filter="url(#glowStrong)" letter-spacing="12">
     NOVA
   </text>
   
-  <!-- Shadow/glow behind text -->
-  <text x="300" y="200" text-anchor="middle" font-family="'Impact', 'Arial Black', sans-serif" font-size="120" font-weight="bold" fill="none" stroke="#ff8800" stroke-width="8" opacity="0.3" letter-spacing="15">
+  <!-- Subtle text shadow -->
+  <text x="300" y="220" text-anchor="middle" font-family="'Segoe UI', 'Arial Black', sans-serif" font-size="110" font-weight="900" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.2" letter-spacing="12">
     NOVA
   </text>
-  
-  <!-- Subtitle -->
-  <text x="300" y="260" text-anchor="middle" font-family="'Arial', sans-serif" font-size="22" fill="#ffcc00" letter-spacing="8" opacity="0.9">
-    THE HUMAN ROCKET
-  </text>
-  
-  <!-- Centered cosmic emblem -->
-  <circle cx="300" cy="400" r="80" fill="none" stroke="#ff4400" stroke-width="3" opacity="0.8"/>
-  <circle cx="300" cy="400" r="60" fill="none" stroke="#ffcc00" stroke-width="2" opacity="0.6"/>
-  <circle cx="300" cy="400" r="40" fill="none" stroke="#ff8800" stroke-width="1.5" opacity="0.4"/>
-  <circle cx="300" cy="400" r="15" fill="#ff4400" opacity="0.8"/>
-  <circle cx="300" cy="400" r="8" fill="#ffcc00" opacity="0.9"/>
-  
-  <!-- Starburst rays -->
-  <line x1="300" y1="280" x2="300" y2="520" stroke="#ff6600" stroke-width="1" opacity="0.4"/>
-  <line x1="180" y1="400" x2="420" y2="400" stroke="#ff6600" stroke-width="1" opacity="0.4"/>
-  <line x1="215" y1="315" x2="385" y2="485" stroke="#ff6600" stroke-width="1" opacity="0.3"/>
-  <line x1="215" y1="485" x2="385" y2="315" stroke="#ff6600" stroke-width="1" opacity="0.3"/>
   
   <!-- Tagline -->
-  <text x="300" y="560" text-anchor="middle" font-family="'Georgia', serif" font-size="18" fill="#ffffff" opacity="0.7" font-style="italic">
-    "From the ashes of Xandar, a new star rises."
+  <text x="300" y="270" text-anchor="middle" font-family="'Segoe UI', monospace" font-size="16" fill="#00d4ff" opacity="0.6" letter-spacing="6">
+    INTELLIGENT AUTOMATION
   </text>
   
-  <!-- Bottom info bar -->
-  <rect x="100" y="620" width="400" height="60" rx="5" fill="none" stroke="#ff4400" stroke-width="2" opacity="0.5"/>
-  
-  <text x="300" y="645" text-anchor="middle" font-family="'Arial', sans-serif" font-size="14" fill="#ffcc00" opacity="0.8" letter-spacing="3">
-    MARVEL STUDIOS
+  <!-- Subtitle - tech specs -->
+  <text x="300" y="300" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#7b2ffc" opacity="0.5" letter-spacing="4">
+    &lt; BOT FRAMEWORK v3.0 /&gt;
   </text>
   
-  <text x="300" y="665" text-anchor="middle" font-family="'Arial', sans-serif" font-size="12" fill="#ffffff" opacity="0.5" letter-spacing="2">
-    COMING SOON
+  <!-- Feature highlights -->
+  <g font-family="'Segoe UI', sans-serif" font-size="13" fill="#b0b0d0" opacity="0.8">
+    <text x="300" y="520" text-anchor="middle" letter-spacing="2">⚡ REAL-TIME PROCESSING</text>
+    <text x="300" y="545" text-anchor="middle" letter-spacing="2">🔒 ENTERPRISE SECURITY</text>
+    <text x="300" y="570" text-anchor="middle" letter-spacing="2">🤖 AI-POWERED RESPONSES</text>
+    <text x="300" y="595" text-anchor="middle" letter-spacing="2">📊 ADVANCED ANALYTICS</text>
+  </g>
+  
+  <!-- Stats bar -->
+  <g font-family="'Courier New', monospace" font-size="11" fill="#00d4ff" opacity="0.4">
+    <text x="80" y="650">UPTIME: 99.97%</text>
+    <text x="350" y="650">LATENCY: &lt; 50ms</text>
+    <text x="80" y="670">USERS: 10K+</text>
+    <text x="350" y="670">COMMANDS: 500+</text>
+  </g>
+  
+  <!-- Bottom bar -->
+  <rect x="40" y="710" width="520" height="2" fill="url(#novaGrad)" opacity="0.3"/>
+  
+  <text x="300" y="740" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#505070" letter-spacing="8">
+    BUILT WITH T E C H N O L O G Y
   </text>
   
-  <!-- Year -->
-  <text x="300" y="740" text-anchor="middle" font-family="'Arial', sans-serif" font-size="16" fill="#ff4400" opacity="0.6" letter-spacing="5">
-    2026
+  <text x="300" y="765" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#303050" letter-spacing="2">
+    [ v3.0.1 ] — DEPLOY READY
   </text>
+  
+  <!-- Corner accents -->
+  <path d="M 30 30 L 80 30 L 80 35 L 35 35 L 35 80 L 30 80 Z" fill="#00d4ff" opacity="0.3"/>
+  <path d="M 570 30 L 520 30 L 520 35 L 565 35 L 565 80 L 570 80 Z" fill="#ff006e" opacity="0.3"/>
+  <path d="M 30 770 L 80 770 L 80 765 L 35 765 L 35 720 L 30 720 Z" fill="#7b2ffc" opacity="0.3"/>
+  <path d="M 570 770 L 520 770 L 520 765 L 565 765 L 565 720 L 570 720 Z" fill="#00d4ff" opacity="0.3"/>
 </svg>
