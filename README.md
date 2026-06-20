@@ -1,1 +1,1 @@
-![NOVA Poster](nova-poster.svg)
+![NOVA Poster](nova.svg)
